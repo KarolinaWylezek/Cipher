@@ -7,7 +7,7 @@ package wylezek.karolina.java.project1;
 
 /**
  *
- * @author ASUS
+ * @author Karolina Wylezek
  */
 public class Encryption {
     
