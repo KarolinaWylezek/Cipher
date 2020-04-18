@@ -5,6 +5,9 @@
  */
 package wylezek.karolina.java.project1.view;
 
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
 /**
  * This class is used to print the queries and results in the console
  * 
@@ -13,21 +16,22 @@ package wylezek.karolina.java.project1.view;
  */
 public class CipherView {
     
-    /**
-     *  prints the text that asks the user about operation that they want to conduct (decoding/encoding)
-     */
+    Scanner scannedText = new Scanner(System.in);
+     boolean badinput = false;
     
-    public void choose(){
-        System.out.println("If you want to encode type 1 and press enter, if you want to decode type 2 ");
+    public String Sentence(){
+        String text = null;
+        do {try{
+            text = scannedText.nextLine();  
+            }catch (InputMismatchException e) {
+                System.out.println("Wrong input");
+                badinput = true;
+            }finally{
+                badinput = false;
+            }
+        }while(badinput == true);
         
-    }
-    
-    /**
-     * prints the text that asks the user about the shift
-     */
-    
-    public void chooseShift(){
-        System.out.println("Choose the shift: ");
+        return text;
     }
     
     /**
@@ -40,7 +44,7 @@ public class CipherView {
     public void operation (int chosen){
         if(chosen == 1)
             System.out.println("Type the text that you want to encode: ");
-        
+            
         else if(chosen == 2)
             System.out.println("Type the text that you want to decode: ");
         

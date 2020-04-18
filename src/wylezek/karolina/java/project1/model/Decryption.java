@@ -5,6 +5,8 @@
  */
 package wylezek.karolina.java.project1.model;
 
+import wylezek.karolina.java.project1.exception.CharacterNotFoundException;
+
 /**
  *This class is responsible for decryption of the encrypted text
  * 
@@ -16,18 +18,18 @@ public class Decryption {
     /**
      * the instance of StringBuilder class that lets us use the methods of this class
      */
-    StringBuilder decrypted = new StringBuilder();
+    private StringBuilder decrypted = new StringBuilder();
     
     /**
      * stores the new character after decryption
      */
-    char newChar;
+    private char newChar;
     
     /**
      * tmp is the field that stores the ascii number of character that we want to move
      * position is the field that stores the ascii number of the character after shifting it by specified key
      */
-    int tmp, position;
+    private int tmp, position;
     
     /**
      * this method takes the given encrypted text and decrypt it using given key
@@ -37,10 +39,14 @@ public class Decryption {
      * @return the method returns the decrypted text 
      */
     
-    public StringBuilder decrypt(String text, int key){
+    public StringBuilder decrypt(String text, int key) throws CharacterNotFoundException{
         
        
         for(int i = 0; i < text.length(); i++){
+            
+             if((!Character.isLetter(text.charAt(i))) && text.charAt(i)!=' '){
+                throw new CharacterNotFoundException("Cannot encode symbol: " + text.charAt(i) + ".");
+            }
             
             if(text.charAt(i) == ' '){
                 decrypted.append(' ');
