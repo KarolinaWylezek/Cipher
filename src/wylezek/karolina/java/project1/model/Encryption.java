@@ -43,13 +43,13 @@ public class Encryption {
     
     
     public StringBuilder encrypt(String text, int key) throws CharacterNotFoundException {
-        for(int i = 0; i < text.length(); i++){
+        for(char ch: text.toCharArray()){
             
-            if((!Character.isLetter(text.charAt(i))) && text.charAt(i)!=' '){
-                throw new CharacterNotFoundException("Cannot encode symbol: " + text.charAt(i) + ".");
+            if((!Character.isLetter(ch)) && ch != ' '){
+                throw new CharacterNotFoundException("Cannot encode symbol: " + ch + ".");
             }
             
-            if(text.charAt(i) == ' '){
+            if(ch == ' '){
                 encrypted.append(' ');
             }
             
@@ -57,15 +57,15 @@ public class Encryption {
             
             else{
                 
-                if(Character.isUpperCase(text.charAt(i))){
-                    tmp = (int)(text.charAt(i));
+                if(Character.isUpperCase(ch)){
+                    tmp = (int)ch;
                     position = (((tmp - 65) + key)%26);
                     newChar = (char)(position + 65);
                     encrypted.append(newChar);
                 }
                 
                 else{
-                    tmp = (int)(text.charAt(i));
+                    tmp = (int)ch;
                     position = (((tmp - 97) + key)%26);
                     newChar = (char)(position + 97);
                     encrypted.append(newChar);

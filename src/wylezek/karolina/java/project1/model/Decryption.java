@@ -42,20 +42,20 @@ public class Decryption {
     public StringBuilder decrypt(String text, int key) throws CharacterNotFoundException{
         
        
-        for(int i = 0; i < text.length(); i++){
+        for(char ch: text.toCharArray()){
             
-             if((!Character.isLetter(text.charAt(i))) && text.charAt(i)!=' '){
-                throw new CharacterNotFoundException("Cannot encode symbol: " + text.charAt(i) + ".");
+             if((!Character.isLetter(ch)) && ch != ' '){
+                throw new CharacterNotFoundException("Cannot encode symbol: " + ch + ".");
             }
             
-            if(text.charAt(i) == ' '){
+            if(ch == ' '){
                 decrypted.append(' ');
             }
             
             else{
                 
-                if(Character.isUpperCase(text.charAt(i))){
-                    tmp = (int)(text.charAt(i));
+                if(Character.isUpperCase(ch)){
+                    tmp = (int)ch;
                     tmp += 26;
                     position = (((tmp - 65) - key)%26);
                     newChar = (char)(position + 65);
@@ -63,7 +63,7 @@ public class Decryption {
                 }
                 
                 else{
-                    tmp = (int)(text.charAt(i));
+                    tmp = (int)ch;
                     tmp += 26;
                     position = (((tmp - 97) - key)%26);
                     newChar = (char)(position + 97);
