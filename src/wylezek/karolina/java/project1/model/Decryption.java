@@ -5,6 +5,9 @@
  */
 package wylezek.karolina.java.project1.model;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import wylezek.karolina.java.project1.exception.CharacterNotFoundException;
 
 /**
@@ -15,7 +18,7 @@ import wylezek.karolina.java.project1.exception.CharacterNotFoundException;
  */
 public class Decryption {
     
-    /**
+     /**
      * the instance of StringBuilder class that lets us use the methods of this class
      */
     private StringBuilder decrypted = new StringBuilder();
@@ -37,11 +40,12 @@ public class Decryption {
      * @param text is of string type; the coded text that the function will decode
      * @param key is of int type; the shift that the program will use to decode the text
      * @return the method returns the decrypted text 
+     * @throws CharacterNotFoundException the method throws CharacterNotFoundException when the character is not letter or space 
      */
     
     public StringBuilder decrypt(String text, int key) throws CharacterNotFoundException{
         
-       
+        
         for(char ch: text.toCharArray()){
             
              if((!Character.isLetter(ch)) && ch != ' '){
@@ -73,5 +77,20 @@ public class Decryption {
         }
         return decrypted;
     }
+    
+    /**
+     * this method lets us check if the keyword we are looking for is located inside the 
+     * generic collection Set (HashSet) that was created from words in String "decrypted",
+     * so we know whether this word is in our decrypted messege or not
+     * 
+     * @param decrypted of String type - the decrypted text in which we want to look for our Keyword
+     * @param keyword of String type - the word that we presence in decrypted text we want to check
+     * @return the method reaturns 'true' when the keyword was found and 'false'when it wasn't
+     */
+    public boolean findKeyword(String decrypted, String keyword){
+        String[] decArr = decrypted.split(" ");
+        Set<String> words = new HashSet <> (Arrays.asList(decArr));
+        return words.contains(keyword);
+    } 
 }
 

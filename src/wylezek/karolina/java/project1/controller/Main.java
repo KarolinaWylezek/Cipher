@@ -32,6 +32,7 @@ public class Main {
         CipherView view = new CipherView();
         int chosen, shift;
         String text;
+        String keyword;
         Encryption e = new Encryption();
         Decryption d = new Decryption();
         chosen = Integer.parseInt(args[0]);
@@ -42,7 +43,7 @@ public class Main {
                 
                 shift = Integer.parseInt(args[1]);
                 view.operation(chosen);
-                text = view.Sentence();
+                text = view.sentence();
                 String enc ="";
                 try{
                     enc = (e.encrypt(text, shift)).toString();
@@ -57,7 +58,9 @@ public class Main {
                 
                 shift = Integer.parseInt(args[1]);
                 view.operation(chosen);
-                text = view.Sentence();
+                text = view.sentence();
+                view.keyword();
+                keyword = view.sentence();
                 String dec ="";
                 try{
                 dec = (d.decrypt(text, shift)).toString();
@@ -65,6 +68,8 @@ public class Main {
                     System.err.print(ex);
                 }
                 view.result(dec, chosen);
+                boolean isFound = d.findKeyword(dec, keyword);
+                view.isKeyword(isFound, keyword);
                 break;
             }
         }

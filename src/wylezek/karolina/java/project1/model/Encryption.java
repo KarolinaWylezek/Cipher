@@ -18,7 +18,6 @@ public class Encryption {
     /**
      * the instance of StringBuilder class that lets us use the methods of this class
      */
-    
     private StringBuilder encrypted = new StringBuilder();
     
     /**
@@ -39,10 +38,12 @@ public class Encryption {
      * @param text is of string type; the text that the function will encode
      * @param key is of int type; the shift that the program will use to encode the text
      * @return the method returns the encrypted text 
+     * @throws CharacterNotFoundException the method throws CharacterNotFoundException when the charachter is not letter or space 
      */
     
     
     public StringBuilder encrypt(String text, int key) throws CharacterNotFoundException {
+        
         for(char ch: text.toCharArray()){
             
             if((!Character.isLetter(ch)) && ch != ' '){

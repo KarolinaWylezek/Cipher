@@ -16,10 +16,18 @@ import java.util.InputMismatchException;
  */
 public class CipherView {
     
+    /**
+     * The instance of class Scanner created to read the input from user
+     */
     Scanner scannedText = new Scanner(System.in);
-     boolean badinput = false;
     
-    public String Sentence(){
+   /**
+    * this method is resposible for reading the text to encode/decode or the keyword from user; 
+    * it also handle the InputMismatchException
+    * @return text that was read from user
+    */
+    public String sentence(){
+        boolean badinput = false;
         String text = null;
         do {try{
             text = scannedText.nextLine();  
@@ -50,6 +58,26 @@ public class CipherView {
         
         else
             System.out.println("Invalid data. Please choose 1 or 2");
+    }
+    
+    /**
+     * this method print the keyword request
+     */
+    public void keyword() {
+        System.out.println("Type the keyword whose presence in decrypted text you want to check: ");
+    }
+    
+    /**
+     * print the result of searching the keyword
+     * 
+     * @param isPresent is true when the keyword was found and false when it wasn't
+     * @param keyword the keyword that the program was looking for 
+     */
+    public void isKeyword(boolean isPresent, String keyword){
+        if(isPresent)
+            System.out.println("The keyword " +keyword + " is present in decrypted sentence.");
+        else
+            System.out.println("The keyword " +keyword + " is not present in decrypted sentence.");
     }
     
     /**
