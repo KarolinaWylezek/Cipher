@@ -5,6 +5,7 @@
  */
 package wylezek.karolina.java.project1.controller;
 
+import static java.lang.System.exit;
 import wylezek.karolina.java.project1.view.CipherView;
 import wylezek.karolina.java.project1.model.*;
 import wylezek.karolina.java.project1.exception.CharacterNotFoundException;
@@ -35,37 +36,64 @@ public class Main {
         String keyword;
         Encryption e = new Encryption();
         Decryption d = new Decryption();
+        chosen = 0;
+        //where
+        try{
         chosen = Integer.parseInt(args[0]);
-       
+        } catch(NumberFormatException ex){
+            System.err.println("Wrong input given");
+            exit(0);
+        }
         while(true){
         
             if(chosen == 1){
-                
+                //where
+                try{
                 shift = Integer.parseInt(args[1]);
+                }catch(NumberFormatException ex){
+                    System.err.println("Wrong shift given");
+                    break;
+                }
+                catch (ArrayIndexOutOfBoundsException ex1){
+                    System.err.println("Too few arguments in []args");
+                    break;
+                }
                 view.operation(chosen);
                 text = view.sentence();
-                String enc ="";
+                String enc;
+                //where
                 try{
                     enc = (e.encrypt(text, shift)).toString();
                 }catch(CharacterNotFoundException ex){
                     System.err.print(ex);
+                    break;
                 }
                 view.result(enc, chosen);
                 break;
             }
         
             else if (chosen == 2){
-                
+                //where
+                try{
                 shift = Integer.parseInt(args[1]);
+                }catch(NumberFormatException ex){
+                    System.err.println("Wrong shift given");
+                    break;
+                }
+                catch (ArrayIndexOutOfBoundsException ex1){
+                    System.err.println("Too few arguments in []args");
+                    break;
+                }
                 view.operation(chosen);
                 text = view.sentence();
                 view.keyword();
                 keyword = view.sentence();
-                String dec ="";
+                String dec;
                 try{
                 dec = (d.decrypt(text, shift)).toString();
                 }catch(CharacterNotFoundException ex){
                     System.err.print(ex);
+                    break;
                 }
                 view.result(dec, chosen);
                 boolean isFound = d.findKeyword(dec, keyword);
