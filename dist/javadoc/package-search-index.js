@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"wylezek.karolina.java.project1.controller"},{"l":"wylezek.karolina.java.project1.exception"},{"l":"wylezek.karolina.java.project1.model"},{"l":"wylezek.karolina.java.project1.view"}]

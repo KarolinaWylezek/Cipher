@@ -37,35 +37,35 @@ public class Main {
         Encryption e = new Encryption();
         Decryption d = new Decryption();
         chosen = 0;
-        //where
+        
         try{
         chosen = Integer.parseInt(args[0]);
         } catch(NumberFormatException ex){
-            System.err.println("Wrong input given");
+           view.errorInput();
             exit(0);
         }
         while(true){
         
             if(chosen == 1){
-                //where
+               
                 try{
                 shift = Integer.parseInt(args[1]);
                 }catch(NumberFormatException ex){
-                    System.err.println("Wrong shift given");
+                    view.errorShift();
                     break;
                 }
                 catch (ArrayIndexOutOfBoundsException ex1){
-                    System.err.println("Too few arguments in []args");
+                   view.errorArgs();
                     break;
                 }
                 view.operation(chosen);
                 text = view.sentence();
                 String enc;
-                //where
+                
                 try{
                     enc = (e.encrypt(text, shift)).toString();
                 }catch(CharacterNotFoundException ex){
-                    System.err.print(ex);
+                    view.errorCharacter(ex);
                     break;
                 }
                 view.result(enc, chosen);
@@ -73,15 +73,15 @@ public class Main {
             }
         
             else if (chosen == 2){
-                //where
+                
                 try{
                 shift = Integer.parseInt(args[1]);
                 }catch(NumberFormatException ex){
-                    System.err.println("Wrong shift given");
+                    view.errorShift();
                     break;
                 }
                 catch (ArrayIndexOutOfBoundsException ex1){
-                    System.err.println("Too few arguments in []args");
+                    view.errorArgs();
                     break;
                 }
                 view.operation(chosen);
@@ -92,7 +92,7 @@ public class Main {
                 try{
                 dec = (d.decrypt(text, shift)).toString();
                 }catch(CharacterNotFoundException ex){
-                    System.err.print(ex);
+                    view.errorCharacter(ex);
                     break;
                 }
                 view.result(dec, chosen);

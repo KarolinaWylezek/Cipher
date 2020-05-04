@@ -76,6 +76,7 @@ public class DecTest {
         Decryption dec = new Decryption();
         try{
         String decryptedText = dec.decrypt(text, key).toString();
+         fail("Should not be here");
         }catch(CharacterNotFoundException e){
             assertTrue(true);
         }

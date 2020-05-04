@@ -7,6 +7,7 @@ package wylezek.karolina.java.project1.view;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import wylezek.karolina.java.project1.exception.CharacterNotFoundException;
 
 /**
  * This class is used to print the queries and results in the console
@@ -61,14 +62,14 @@ public class CipherView {
     }
     
     /**
-     * this method print the keyword request
+     * this method prints the keyword request
      */
     public void keyword() {
         System.out.println("Type the keyword whose presence in decrypted text you want to check: ");
     }
     
     /**
-     * print the result of searching the keyword
+     * prints the result of searching the keyword
      * 
      * @param isPresent is true when the keyword was found and false when it wasn't
      * @param keyword the keyword that the program was looking for 
@@ -81,7 +82,7 @@ public class CipherView {
     }
     
     /**
-     * print the result of coding/decoding operation
+     * prints the result of coding/decoding operation
      * 
      * @param readyText of type String; the encoded/decoded text to be printed
      * @param chosen of type int; the chosen by user operation (1 - encoding/ 2 - decoding)
@@ -95,5 +96,37 @@ public class CipherView {
             System.out.println("Decoded text : " + readyText);
     }
     
+    /**
+     * this method prints message about wrong shift given (NumberFormatException)
+     */
+    
+    public void errorShift(){
+        System.err.println("Wrong shift given");
+    }
+    
+    /**
+     * this method prints message about wrong input (NumberFormatException)
+     */
+    
+    public void errorInput(){
+         System.err.println("Wrong input given");
+    }
+    
+    /**
+     * this method prints message about too few arguments in []args (ArrayIndexOutOfBoundsException)
+     */
+    
+    public void errorArgs(){
+         System.err.println("Too few arguments in []args");
+    }
+    
+    /**
+     * this method prints message about wrong symbol in text to encode/decode (CharacterNotFoundException)
+     * @param ex of CharacterNotFoundException type, lets us print the message and the symbol that caused the problem
+     */
+    
+    public void errorCharacter(CharacterNotFoundException ex){
+        System.err.print(ex);
+    }
    
 }

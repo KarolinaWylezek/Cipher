@@ -71,6 +71,7 @@ public class EnTest {
         Encryption enc = new Encryption();
         try{
         String encryptedText = enc.encrypt(text, key).toString();
+        fail("Should not be here");
         }catch(CharacterNotFoundException e){
             assertTrue(true);
         }
